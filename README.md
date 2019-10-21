@@ -1,5 +1,6 @@
 # StudentRoom
-Quiz para ajudar professores em aulas de forma ludica integrado com Arduino
+Quiz para ajudar professores em aulas de forma ludica integrado com Arduino.
+Desenvolvimento em React.
 
 ## Funcionalidades
 
