@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Styles/index.css';
 import * as serviceWorker from './serviceWorker';
-import getComponents from './Components/getComponents';
+import GetQuestions from './Components/GetQuestions';
 
-ReactDOM.render(<getComponents/>, document.getElementById('root'));
+ReactDOM.render(<GetQuestions/>, document.getElementById('root'));
 
 
 serviceWorker.unregister();
