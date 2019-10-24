@@ -10,11 +10,7 @@ function GetQuestions() {
       <div className="title_question"><h1>Perguntas salvas</h1></div>
         <div className="list_questions">
         <QuestionPreview/>
-        <QuestionPreview/>
-        <QuestionPreview/>
-        <QuestionPreview/>
-        <QuestionPreview/>
-        <QuestionPreview/>
+     
         </div>
       </div>
   );

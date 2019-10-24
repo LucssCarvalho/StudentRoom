@@ -7,7 +7,7 @@ render(){
        
         <div class="label_question_preview">
         <div class="title_question_preview">
-            <div class="text_title">Title Question</div>
+        <div class="text_title">Title Question</div>
         </div>
         <div class="subtitle_question_preview">
             <div class="text_subtitle">Question true</div>
