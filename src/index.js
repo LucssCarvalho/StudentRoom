@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Styles/index.css';
 import * as serviceWorker from './serviceWorker';
-import GetQuestions from './Components/GetQuestions';
+import ViewMenu from './View/ViewMenu';
 
-ReactDOM.render(<GetQuestions/>, document.getElementById('root'));
-
+ReactDOM.render(<ViewMenu/>, document.getElementById('root'));
 
 serviceWorker.unregister();
