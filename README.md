@@ -2,7 +2,6 @@
 Quiz para ajudar professores em aulas de forma ludica integrado com Arduino.
 * WEB - React.
 * API - Dotnet Core
-* Banco De Dados - MongoDB
 * Aut - FireBase
 
 ## Funcionalidades
