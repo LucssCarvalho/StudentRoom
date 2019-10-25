@@ -1,7 +1,6 @@
 import React from 'react';
 
 class QuestionPreview extends React.Component {
-
 render(){
     return(
        

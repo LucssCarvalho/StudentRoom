@@ -1,7 +1,6 @@
 import React from 'react';
 import PostData from '../data/posts.json'
 
-
 class Question extends React.Component {
     render () {
         return (
@@ -14,5 +13,4 @@ class Question extends React.Component {
         )
     }
 }
-
 export default Question;

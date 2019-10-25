@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react'
 import '../Styles/ViewCreateQuestion.css'
 
-function ViewCreateQuestion() {
+
+  class ViewCreateQuestion extends Component {
+  render() {
 
   return (
     <div className="ViewCreateQuestion">
@@ -24,6 +26,7 @@ function ViewCreateQuestion() {
         </form>
         </div>
       </div>
-  );
+    );
+  }
 }
 export default ViewCreateQuestion;

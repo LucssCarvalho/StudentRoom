@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Styles/index.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import ViewMenu from './View/ViewMenu';
 
-ReactDOM.render(<ViewMenu/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 serviceWorker.unregister();

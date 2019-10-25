@@ -3,7 +3,6 @@ import '../Styles/ViewQuestion.css'
 import Clock from "./Clock";
 import Question from "./Question";
 
-
 function ViewQuestion() {
 
   function ClockExecute() 
