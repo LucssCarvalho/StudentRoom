@@ -23,11 +23,6 @@ import '../Styles/ViewCreateQuestion.css'
 
             <div class="label_resp">
               <div class="label_btn">
-              <div class="btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="checkbox" checked autocomplete="off"> Checked</input>
-                 </label>
-                </div>
                 <input type="text" name="name" class="btn btn-info"></input>
                 <input type="text" name="name" class="btn btn-info"></input>
                 <input type="text" name="name" class="btn btn-info"></input>

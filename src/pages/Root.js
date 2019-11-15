@@ -5,6 +5,7 @@ import ViewCreateQuestion from '../View/ViewCreateQuestion'
 import ViewMenu from '../View/ViewMenu'
 import ViewLogin from '../View/ViewLogin'
 import ViewQuestion from '../View/ViewQuestion'
+import ViewConfirmGame from '../View/ViewConfirmGame'
 
 
 export default () => (
@@ -13,6 +14,7 @@ export default () => (
         <Route path='/getquestions' component={GetQuestions} />
         <Route path='/viewcreatequestion' component={ViewCreateQuestion} />
         <Route path='/viewlogin' component={ViewLogin} />
-        <Route path='/viewquestion' component={ViewQuestion} />
+        <Route path='/viewquestion' component={ViewQuestion}/>
+        <Route path='/Viewconfirmgame' component={ViewConfirmGame} />
     </Switch>
 )
