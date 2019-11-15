@@ -8,21 +8,34 @@ import '../Styles/ViewCreateQuestion.css'
   return (
     <div className="ViewCreateQuestion">
       <header className="ViewCreateQuestion-header">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+            crossorigin="anonymous"> 
+        </link>
+
       </header>
-        <div>
+        <div className="container">
         <form>
-            <label class="label_name_question">Faça sua pergunta:
+            <div class="label_name_question">Faça sua pergunta:
                  <input type="text" name="name" class="input_question"/>
-            </label>
+            </div>
+
             <div class="label_resp">
-             <div class="label_btn">
-             <input type="text" name="name" class="btn"/>
-             <input type="text" name="name" class="btn"/>
-             <input type="text" name="name" class="btn"/>
-             <input type="text" name="name" class="btn"/>
+              <div class="label_btn">
+              <div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input type="checkbox" checked autocomplete="off"> Checked</input>
+                 </label>
+                </div>
+                <input type="text" name="name" class="btn btn-info"></input>
+                <input type="text" name="name" class="btn btn-info"></input>
+                <input type="text" name="name" class="btn btn-info"></input>
+                <input type="text" name="name" class="btn btn-info"></input>
+                <input type="text" name="name" class="btn btn-info"></input>
              </div>
            </div>
-           <input class="btn_success" type="submit" value="Enviar" />
+           <input class="btn btn-success" type="submit" value="Enviar" />
         </form>
         </div>
       </div>

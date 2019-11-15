@@ -1,3 +1,6 @@
-.label_resp {
-  top:auto;
+.label_menu {
+  border: 1px solid #ccc;
+  background-color: #f3f3f3;
+  box-shadow: 2px 2px 25px black;
+  border-radius: 10px 10px;
 }
