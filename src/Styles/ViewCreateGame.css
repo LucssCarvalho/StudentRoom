@@ -1,0 +1,13 @@
+div.ViewCreateGame {
+    background-color: rgb(21, 19, 46);
+}
+.col-sm {
+    font-size: 25px;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+}
+
+.card-title{
+    text-align: center;
+}
