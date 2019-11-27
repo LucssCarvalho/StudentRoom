@@ -1,0 +1,30 @@
+[debug] [2019-11-22T17:39:35.120Z] ----------------------------------------------------------------------
+[debug] [2019-11-22T17:39:35.122Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lucas.carvalho\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only firestore
+[debug] [2019-11-22T17:39:35.122Z] CLI Version:   7.8.1
+[debug] [2019-11-22T17:39:35.122Z] Platform:      win32
+[debug] [2019-11-22T17:39:35.122Z] Node Version:  v12.12.0
+[debug] [2019-11-22T17:39:35.123Z] Time:          Fri Nov 22 2019 15:39:35 GMT-0200 (GMT-02:00)
+[debug] [2019-11-22T17:39:35.123Z] ----------------------------------------------------------------------
+[debug] [2019-11-22T17:39:35.123Z] 
+[warn] !  Could not find config (firebase.json) so using defaults.
+[info] i  emulators: Starting emulators: firestore
+[warn] !  No Firestore rules file specified in firebase.json, using default rules.
+[info] i  firestore: Serving ALL traffic (including WebChannel) on http://localhost:8080
+[warn] !  firestore: Support for WebChannel on a separate port (8081) is DEPRECATED and will go away soon. Please use port above instead.
+[info] i  firestore: downloading cloud-firestore-emulator-v1.10.2.jar...
+[debug] [2019-11-22T17:40:50.296Z] Ignoring unsupported arg: projectId
+[debug] [2019-11-22T17:40:50.296Z] Ignoring unsupported arg: auto_download
+[debug] [2019-11-22T17:40:50.297Z] Starting emulator firestore with command {"binary":"java","args":["-Duser.language=en","-jar","C:\\Users\\lucas.carvalho\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.10.2.jar","--host","localhost","--port",8080,"--webchannel_port",8081],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator"],"joinArgs":false}
+[info] i  firestore: Emulator logging to firestore-debug.log
+[debug] [2019-11-22T17:40:53.179Z] API endpoint: http://localhost:8080
+
+[debug] [2019-11-22T17:40:53.180Z] If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
+
+   export FIRESTORE_EMULATOR_HOST=localhost:8080
+
+Dev App Server is now running.
+
+
+[info] +  firestore: Emulator started at http://localhost:8080
+[info] i  firestore: For testing set FIRESTORE_EMULATOR_HOST=localhost:8080
+[info] +  All emulators started, it is now safe to connect.

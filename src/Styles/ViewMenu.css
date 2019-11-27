@@ -4,3 +4,13 @@
   box-shadow: 2px 2px 25px black;
   border-radius: 10px 10px;
 }
+
+.ViewMenu{
+  background-color: rgb(21, 19, 46);
+}
+
+.col-sm-2 {
+  color:white;
+  font-size: 25px;
+  margin: 0;
+}
