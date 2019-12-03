@@ -2,30 +2,35 @@ import React, { Component } from 'react'
 import '../Styles/ViewMenu.css'
 
 class ViewMenu extends Component {
+
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+  
   render() {
   return (
-    <div className='ViewMenu'>
-      <header className="ViewMenu-header">
+    <div className='container'>
+      <header className="container">
       </header>
-      <body>
       <div className="ViewMenu">
         <div className="container">
         <div className="title_question"><h1>Bem-Vindo</h1></div>
-        <div class="label_menu">
-          <div class="label_btn">
-            <button type="button" class="btn btn-primary"><a href='#/viewcreatequestion'></a>Criar pergunta</button>
-            <button type="button" class="btn btn-primary"><a href='#/getquestions'></a>Visualizar perguntas</button>
-            <button type="button" class="btn btn-primary">Visualizar relatórios</button>
-            <button type="button" class="btn btn-primary">Configuração</button>
-            <button type="button" class="btn btn-primary">Sair</button>
+        <div className="label_menu">
+          <div className="label_btn">
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+            onClick={() => this.nextPath ('/viewcreatequestion')}>Criar pergunta</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block">Visualizar perguntas</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block">Visualizar relatórios</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block">Configuração</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+            onClick={() => this.nextPath ('/viewlogin')}>Sair</button>
           </div>
         </div>
         </div>
       </div>
-      </body>
       </div>
-
     );
   }
+  // 
 }
 export default ViewMenu;

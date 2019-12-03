@@ -15,16 +15,16 @@ class Clock extends React.Component {
         const myInterval = setInterval(() => {
             newNumber--
             this.setState({number: newNumber})
-            if (newNumber == 3){
+            if (newNumber === 3){
                 document.body.style.backgroundColor = "#f7da00";
             }
-            else if (newNumber == 2){
+            else if (newNumber === 2){
                 document.body.style.backgroundColor = "#f75f00";
             }
-            else if (newNumber == 1){
+            else if (newNumber === 1){
                 document.body.style.backgroundColor = "#b80000";
             }
-            else if (newNumber == 0) {
+            else if (newNumber === 0) {
                 this.props.testeFuncao()
                 clearInterval(myInterval)
             }

@@ -1,50 +1,71 @@
 import React, { Component, useState } from 'react'
 import '../Styles/ViewCreateQuestion.css'
 
+  const ViewCreateQuestion = (props) => {
 
-  const ViewCreateQuestion = () => {
+    const nextPath = (path) => {
+      props.history.push(path);
+    }
+
+    // const submitForm = () => {
+    //   const { answersTwo } = state
+
+      
+    //   var myOptions = [answersTwo, answersTwo, answersTwo, answersTwo]
+
+    //   var body = {
+    //     options :myOptions,
+    //     question: 'asdasdasd'
+    //   }
+    // }
 
   return (
-        <form className='container'>
-            <div class="label_name_question">Faça sua pergunta: </div>
-                <textarea class="input_question" aria-label="With textarea"></textarea>
+        <form className='container' onSubmit={props.getUser}>
+            <div className="label_name_question">Faça sua pergunta: </div>
 
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                       <input type="checkbox" aria-label="Checkbox for following text input"></input>
-                     </div>
-                  </div>
-                      <input type="text" class="form-control" aria-label="Text input with checkbox"></input>
-                  </div>
+              <textarea className="input_question"  name="titleQuestion" 
+              aria-label="With textarea"></textarea>
 
-                  <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                       <input type="checkbox" aria-label="Checkbox for following text input"></input>
-                     </div>
-                  </div>
-                      <input type="text" class="form-control" aria-label="Text input with checkbox"></input>
-                  </div>
+              <div className="input-group">
+              <div className="input-group-prepend">
+              <div className="input-group-text">
+              <input type="radio" aria-label="Radio button for following text input"></input>
+              </div>
+             </div>
+             <input type="text" className="form-control" name="answersOne"></input>
+            </div>
 
-                  <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                       <input type="checkbox" aria-label="Checkbox for following text input"></input>
-                     </div>
-                  </div>
-                      <input type="text" class="form-control" aria-label="Text input with checkbox"></input>
-                  </div>
+            <div className="input-group">
+              <div className="input-group-prepend">
+              <div className="input-group-text">
+              <input type="radio" aria-label="Radio button for following text input"></input>
+              </div>
+             </div>
+             <input type="text" className="form-control" name="answersTwo"></input>
+            </div>
 
-                  <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                       <input type="checkbox"></input>
-                     </div>
-                  </div>
-                      <input type="text" class="form-control"></input>
-                  </div>
-           <input class="btn btn-primary" type="submit" value="Enviar" />
+            <div className="input-group">
+              <div className="input-group-prepend">
+              <div className="input-group-text">
+              <input type="radio" aria-label="Radio button for following text input"></input>
+              </div>
+             </div>
+             <input type="text" className="form-control" name="answersThree"
+             aria-label="Text input with radio button"></input>
+            </div>
+
+            <div className="input-group">
+              <div className="input-group-prepend">
+              <div className="input-group-text">
+              <input type="radio" aria-label="Radio button for following text input"></input>
+              </div>
+             </div>
+             <input type="text" className="form-control" name="answersFour"
+             aria-label="Text input with radio button"></input>
+            </div>
+                                    
+           <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar"/>
+           <button className="btn btn-primary btn-lg btn-block" onClick={() => nextPath ('/viewmenu')}>Voltar</button>
         </form>
     );
   }

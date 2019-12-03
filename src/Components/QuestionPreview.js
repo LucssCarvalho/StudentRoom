@@ -3,15 +3,16 @@ import React from 'react';
 class QuestionPreview extends React.Component {
 render(){
     return(
-       
-        <div class="label_question_preview">
-        <div class="title_question_preview">
-        <div class="text_title">Title Question</div>
-        </div>
-        <div class="subtitle_question_preview">
-            <div class="text_subtitle">Question true</div>
-        </div>
+    <div class="container">
+        <div class="input-group">
+          <div type="text" class="form-control" 
+            aria-label="Recipient's username" 
+            aria-describedby="basic-addon2">Question Title</div>
+          <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Excluir</button>
        </div>
+      </div>
+    </div>
          );
      }
 }

@@ -33,30 +33,3 @@ h1 {
     font-family: monospace;
 }
 
-.btn {
-    outline: none;
-    display: block;
-    text-align: center;
-    border: 1px solid #ddd;
-    border-bottom: 1px solid #aaa;
-    border-right: 1px solid #aaa;
-    background-repeat: repeat-x;
-    background-position: left top;
-    color: white;
-    font-size: 4vw;
-    line-height: 1.5em;
-    margin-bottom: 10px;
-    text-decoration: underline;
-    height: 60px;
-  }
-  
-  .btn:hover {
-    border: 1px solid #bbb;
-    background-position: left -78px;
-  }
-  
-  .btn:active {
-    color: rgb(0, 183, 255);
-    background-position: left -38px;
-  }
-  

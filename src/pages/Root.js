@@ -9,6 +9,7 @@ import ViewConfirmGame from '../View/ViewConfirmGame'
 import ViewCreateGame from '../View/ViewCreateGame'
 
 export default () => (
+
     <Switch>
         <Route path='/viewmenu' component={ViewMenu} />
         <Route path='/getquestions' component={GetQuestions} />

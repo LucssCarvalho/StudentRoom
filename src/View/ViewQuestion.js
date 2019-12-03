@@ -18,10 +18,10 @@ function ViewQuestion() {
           </div>
           <div class="label_resp">
              <div class="label_btn">
-              <button type="button" class="btn btn-primary">A</button>
-              <button type="button" class="btn btn-primary">B</button>
-              <button type="button" class="btn btn-primary">C</button>
-              <button type="button" class="btn btn-primary">D</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block">A</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block">B</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block">C</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block">D</button>
              </div>
           </div>
           </div>
