@@ -42,7 +42,7 @@ class ViewCreateGame extends Component {
             <div class="col-sm">Deslogado</div>
             <div class="col-sm">Deslogado</div>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block">Inicio</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block">Success</button>
         </div>
         
       </div>

@@ -19,7 +19,16 @@ class ViewMenu extends Component {
           <div className="label_btn">
             <button type="button" className="btn btn-primary btn-lg btn-block"
             onClick={() => this.nextPath ('/viewcreatequestion')}>Criar pergunta</button>
-            <button type="button" className="btn btn-primary btn-lg btn-block">Visualizar perguntas</button>
+
+               <button type="button" className="btn btn-primary btn-lg btn-block"
+            onClick={() => this.nextPath ('/viewcreateroom')}>Criar sala</button>
+
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+            onClick={() => this.nextPath ('/getquestions')}>Visualizar perguntas</button>
+
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+            onClick={() => this.nextPath ('/getquestions')}>Visualizar salas</button>
+
             <button type="button" className="btn btn-primary btn-lg btn-block">Visualizar relatórios</button>
             <button type="button" className="btn btn-primary btn-lg btn-block">Configuração</button>
             <button type="button" className="btn btn-primary btn-lg btn-block"

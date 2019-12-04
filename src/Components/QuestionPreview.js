@@ -21,7 +21,7 @@ render(){
         {this.state.questions.map(data =>
         <li>
         <div className="input-group">
-          <div type="text" className="form-control" 
+          <div type="text"  className="form-control" 
             aria-label="Recipient's username" 
             aria-describedby="basic-addon2"> {data.data.question}</div>
 
