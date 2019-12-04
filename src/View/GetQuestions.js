@@ -9,7 +9,8 @@ class GetQuestions extends Component {
     <div className="container">
       <header className="Login-header">
       </header>
-      <div className="title_question"><h1>Perguntas Salvas</h1></div>
+      <div className="title_question">
+        </div>
         <div className="list_questions">
         <QuestionPreview/>
         </div>

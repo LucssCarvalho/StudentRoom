@@ -12,14 +12,13 @@ class ViewConfirmGame extends Component {
             <div class="label_menu">
                 <div className="menu_label_right">
                     <h3>Equipe 01</h3>
-                    <button type="button" class="btn btn-light">Confirmar</button>
+                    <button type="button" className="btn btn-light btn-lg btn-block">Confirmar</button>
                 </div>
             </div>
-            <div className="title_question"><h1>Vamos jogar ?</h1></div>
             <div class="label_menu">
                 <div className="menu_label_left">
                     <h3>Equipe 02</h3>
-                    <button type="button" class="btn btn-light">Confirmar</button>
+                    <button type="button" className="btn btn-light btn-lg btn-block">Confirmar</button>
                 </div>
             </div>
         </div>

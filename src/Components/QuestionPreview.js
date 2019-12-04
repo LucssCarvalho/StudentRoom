@@ -1,17 +1,39 @@
 import React from 'react';
+import axios from 'axios';
 
 class QuestionPreview extends React.Component {
+  state={
+    questions:[],
+  };
+
+  componentDidMount(){
+    axios.get(`https://tcc-unip.herokuapp.com/questions`)
+    .then((res) => {
+      console.log(res.data.data.id);
+      this.setState({questions: res.data.data})
+    })
+  }
+
 render(){
     return(
-    <div class="container">
-        <div class="input-group">
-          <div type="text" class="form-control" 
+    <div className="container">
+      <ul>
+        {this.state.questions.map(data =>
+        <li>
+        <div className="input-group">
+          <div type="text" className="form-control" 
             aria-label="Recipient's username" 
-            aria-describedby="basic-addon2">Question Title</div>
-          <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Excluir</button>
+            aria-describedby="basic-addon2"> {data.data.question}</div>
+
+          <div className="input-group-append">
+          <button className="btn btn-outline-secondary"
+          type="button">Excluir</button>
        </div>
       </div>
+         </li>
+        )}
+      </ul>
+
     </div>
          );
      }
