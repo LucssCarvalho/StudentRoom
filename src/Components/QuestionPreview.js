@@ -3,14 +3,22 @@ import axios from 'axios';
 
 class QuestionPreview extends React.Component {
   state={
-    questions:[],
+    questions:[]
   };
+
+
+  // const deleteQuestion = () =>
+  // axios.delete(`https://tcc-unip.herokuapp.com/questions/${questionId}`)
+
 
   componentDidMount(){
     axios.get(`https://tcc-unip.herokuapp.com/questions`)
     .then((res) => {
       console.log(res.data.data.id);
-      this.setState({questions: res.data.data})
+      this.setState({
+        questions: res.data.data,
+        questionId : res.data.data.id
+      })
     })
   }
 
@@ -21,19 +29,14 @@ render(){
         {this.state.questions.map(data =>
         <li>
         <div className="input-group">
-          <div type="text"  className="form-control" 
-            aria-label="Recipient's username" 
-            aria-describedby="basic-addon2"> {data.data.question}</div>
-
+          <div type="text"  className="form-control"  aria-label="Recipient's username"  aria-describedby="basic-addon2"> {data.data.question}</div>
           <div className="input-group-append">
-          <button className="btn btn-outline-secondary"
-          type="button">Excluir</button>
+          <button className="btn btn-outline-secondary" type="button">Excluir</button>
        </div>
       </div>
          </li>
         )}
       </ul>
-
     </div>
          );
      }

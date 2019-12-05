@@ -45,7 +45,7 @@ import { object } from 'prop-types';
             <input type="text" aria-label="name" className="form-control" name="name" value={name} onChange = {this.changeHandler}></input>
             <input type="text" aria-label="period" className="form-control" name="period" value={period} onChange = {this.changeHandler} ></input>
           </div>
-          <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar"></input>
+          <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar" ></input>
            <button className="btn btn-primary btn-lg btn-block"  onClick={() => this.nextPath ('/viewmenu')}>Voltar</button>
         </form>
     );
