@@ -17,7 +17,7 @@ class ViewPin extends Component {
               </div>
               <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar" onClick={() => this.nextPath ('/viewnomeequipe')}/>
               <button className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath ('/viewmenu')}>Voltar</button>
-            </div>
+          </div>
 //        </form>
       );
     
