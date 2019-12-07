@@ -7,7 +7,9 @@ class QuestionPreview extends React.Component {
   };
 
 
-  // const deleteQuestion = () =>
+  // deleteQuestion = (questions) =>{
+  // axios.delete(`https://tcc-unip.herokuapp.com/questions/${questionId}`)
+  // }
   // axios.delete(`https://tcc-unip.herokuapp.com/questions/${questionId}`)
 
 

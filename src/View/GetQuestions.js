@@ -8,6 +8,7 @@ class GetQuestions extends Component {
     const nextPath = (path) => {
       this.props.history.push(path);
     }
+    
 
   return (
     <div className="container">

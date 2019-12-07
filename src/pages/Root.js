@@ -8,6 +8,8 @@ import ViewQuestion from '../View/ViewQuestion'
 import ViewConfirmGame from '../View/ViewConfirmGame'
 import ViewCreateGame from '../View/ViewCreateGame'
 import ViewCreateRoom from '../View/ViewCreateRoom'
+import ViewGame from '../View/ViewGame'
+
 
 export default () => (
 
@@ -19,6 +21,6 @@ export default () => (
         <Route path='/viewlogin' component={ViewLogin} />
         <Route path='/viewquestion' component={ViewQuestion}/>
         <Route path='/Viewconfirmgame' component={ViewConfirmGame} />
-        <Route path='/viewcreategame' component={ViewCreateGame} />
+        <Route path='/viewGame' component={ViewGame} />
     </Switch>
 )

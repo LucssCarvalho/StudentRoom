@@ -31,6 +31,7 @@ class ViewMenu extends Component {
 
             <button type="button" className="btn btn-primary btn-lg btn-block">Visualizar relatórios</button>
             <button type="button" className="btn btn-primary btn-lg btn-block">Configuração</button>
+            <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath ('/newindex')}>game</button>
             <button type="button" className="btn btn-primary btn-lg btn-block"
             onClick={() => this.nextPath ('/viewlogin')}>Sair</button>
           </div>

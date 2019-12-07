@@ -22,7 +22,7 @@ class ViewLogin extends Component {
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
               </div>
             </div>
-            <input class="btn btn-success" type="submit" value="Enviar" />
+            <input className="btn btn-success" type="submit" value="Enviar" />
           </form>
         </div>
       </div>
