@@ -8,9 +8,9 @@ class ViewGame extends Component {
 
         this.state = {
             socket: '',
-            socketURL: 'https://tcc-unip.herokuapp.com/e6025c1f-ea61-47c6-b569-83fd7398ec25',
+            socketURL: 'https://tcc-unip.herokuapp.com/bf2699cd-5fa3-40f0-9608-22a1e092b80e',
             yourTeam: '',
-            currTeam: '',
+            currTeam: 'Team A',
             showDivQuestion: false,
             question: {},
             selectedAnswer: '',
@@ -22,6 +22,8 @@ class ViewGame extends Component {
         this.startGame = this.startGame.bind(this)
         this.onChangePinCode = this.onChangePinCode.bind(this)
         this.checkPinCode = this.checkPinCode.bind(this)
+        this.sendAnswer = this.sendAnswer.bind(this)
+        this.onAnswerChange = this.onAnswerChange.bind(this)
     }
 
     componentDidMount() {
@@ -57,8 +59,10 @@ class ViewGame extends Component {
                 self.setState({ showPinForm: false })
                 self.setState({ currTeam })
 
-                if (currTeam === self.state.yourTeam) socket.emit('sendQuestion');
-                console.log("questao enviada")
+                if (currTeam === self.state.yourTeam) {
+                    socket.emit('sendQuestion')
+                    console.log("caiu no if")
+                }
                 console.log(currTeam)
                 console.log(self.state.yourTeam)
             } else {
@@ -67,7 +71,7 @@ class ViewGame extends Component {
         });
 
         socket.on('question', function (data) {
-            console.log(data)
+            self.setState({selectedAnswer:''})
             var team = data.currTeam;
             var question = data.question;
 
@@ -103,13 +107,14 @@ class ViewGame extends Component {
 
     onAnswerChange(event) {
         this.setState({ selectedAnswer: event.currentTarget.value })
+        console.log(event.currentTarget.value);
     }
 
     sendAnswer() {
         this.state.socket.emit('verifyQuestion',
             {
                 answer: this.state.selectedAnswer,
-                questionId: this.state.question.questionId
+                questionId: this.state.question.id
             });
     }
 
@@ -156,11 +161,11 @@ class ViewGame extends Component {
                  {showButtonStart &&
                      <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton} onClick={this.startGame}> Iniciar jogo </button>
                  }
-                {showDivQuestion && <div>
+                {showDivQuestion && <div className="title_question">
                     <h1>{question.data.question}</h1>
                     <ul>
                         {question.data.answers.map(answer =>
-                            <li><input type="radio" name="el" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li>)}
+                            <li><input type="radio" name="answer" value={answer} checked={selectedAnswer == answer} onChange={this.onAnswerChange} /> {answer} </li>)}
                     </ul>
                     <button id='verifyQuestion' onClick={this.sendAnswer}>Enviar Reposta</button>
                 </div>}
