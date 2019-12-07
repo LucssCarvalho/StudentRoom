@@ -9,23 +9,13 @@ class ViewAguardar extends Component {
 
     render (){
       return(
-<div className="text">
+      <div className="text">
 
-<h1 >
-          Aguardando resposta da outra equipe...
-          </h1>
+        <h1 >Aguardando resposta da outra equipe...</h1>
 
-<div aria-busy="true" aria-label="Loading" role="progressbar" class="container">
-        <div class="swing">
-        <div class="swing-l"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div class="swing-r"></div>
-        </div>
-        </div>
+        <div aria-busy="true" aria-label="Loading" role="progressbar" class="container">
+
+            </div>
 </div>
 
       );
