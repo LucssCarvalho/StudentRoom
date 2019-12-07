@@ -12,11 +12,12 @@ class ViewAguardar extends Component {
       <div className="text">
 
         <h1 >Aguardando resposta da outra equipe...</h1>
+        
+        <div className="divAguardar">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
 
-        <div aria-busy="true" aria-label="Loading" role="progressbar" class="container">
-
-            </div>
-</div>
+      </div>
 
       );
     
