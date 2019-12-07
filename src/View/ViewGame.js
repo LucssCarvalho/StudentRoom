@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import socket from 'socket.io'
 import socketIOClient from 'socket.io-client';
 import '../Styles/ViewGame.css'
 
@@ -8,25 +7,34 @@ class ViewGame extends Component {
         super(props)
 
         this.state = {
-            socketURL:'http://localhost:3000/',
+            socket: '',
+            socketURL: 'https://tcc-unip.herokuapp.com/e6025c1f-ea61-47c6-b569-83fd7398ec25',
             yourTeam: '',
             currTeam: '',
             showDivQuestion: false,
             question: {},
             selectedAnswer: '',
-            disableStartGameButton: false,
-            pinCode:''
+            disableStartGameButton: true,
+            pinCode: '',
+            showPinForm: true,
+            showButtonStart:true
         }
-     
+        this.startGame = this.startGame.bind(this)
+        this.onChangePinCode = this.onChangePinCode.bind(this)
+        this.checkPinCode = this.checkPinCode.bind(this)
     }
- 
+
     componentDidMount() {
         const socket = socketIOClient(this.state.socketURL)
+        this.setState({ socket })
+
         var self = this;
 
         socket.on('checkPinCode', function (data) {
+            console.log(data)
             if (data.isOk) {
                 self.setState({ yourTeam: data.team })
+                self.setState({ disableStartGameButton: false })
             } else {
                 alert('Team already logged');
             }
@@ -39,28 +47,33 @@ class ViewGame extends Component {
             self.setState({ currTeam })
             self.setState({ showDivQuestion: false })
 
-            if(currTeam === self.state.yourTeam) socket.emit('sendQuestion');
+            if (currTeam === self.state.yourTeam) socket.emit('sendQuestion');
         });
 
         socket.on('startGame', function (data) {
             if (data.started) {
                 let currTeam = data.team
-                self.setState({ disableStartGameButton: true })
+                self.setState({ showButtonStart: false })
+                self.setState({ showPinForm: false })
                 self.setState({ currTeam })
 
-                if(currTeam === self.state.yourTeam) socket.emit('sendQuestion');
+                if (currTeam === self.state.yourTeam) socket.emit('sendQuestion');
+                console.log("questao enviada")
+                console.log(currTeam)
+                console.log(self.state.yourTeam)
             } else {
                 alert('Aguarde o outro time logar');
             }
         });
 
         socket.on('question', function (data) {
+            console.log(data)
             var team = data.currTeam;
             var question = data.question;
-      
+
             if (team === self.state.yourTeam) {
                 if (question) {
-                    self.setState({ question })
+                    self.setState({ question, showDivQuestion: true })
                 } else {
                     alert('Todas perguntas respondidas');
                 }
@@ -75,17 +88,17 @@ class ViewGame extends Component {
             }
         });
 
-    // BUTTONS
-     }
+        // BUTTONS
+    }
 
     checkPinCode() {
-    socket.emit('checkPinCode', 
-    { code: this.state.pinCode });
+        this.state.socket.emit('checkPinCode',
+            { code: this.state.pinCode });
     }
 
     startGame() {
-        socket.emit('startGame',
-        { team: this.state.currTeam });
+        this.state.socket.emit('startGame',
+            { team: this.state.currTeam });
     }
 
     onAnswerChange(event) {
@@ -93,11 +106,16 @@ class ViewGame extends Component {
     }
 
     sendAnswer() {
-        socket.emit('verifyQuestion', 
-        { 
-        answer: this.state.selectedAnswer,
-        questionId: this.state.question.questionId });
-        }
+        this.state.socket.emit('verifyQuestion',
+            {
+                answer: this.state.selectedAnswer,
+                questionId: this.state.question.questionId
+            });
+    }
+
+    onChangePinCode(event) {
+        this.setState({ pinCode: event.target.value })
+    }
 
     render() {
         const {
@@ -107,47 +125,46 @@ class ViewGame extends Component {
             selectedAnswer,
             disableStartGameButton,
             showDivQuestion,
-            pinCode} = this.state
+            pinCode,
+            showPinForm,
+            showButtonStart} = this.state
 
         return (
-        <div className="container">
+            <div className="container">
 
-              {/* ////// TITULO do TIME /////  */}
-            <div className="title_question">
-            {yourTeam}
-            <div><h4>Seu time atual: {currTeam}</h4></div>
-                <div><h4>Esse é seu time: {yourTeam}</h4></div>
-            </div>
-            {/* ////// FINAL DO TITULO do TIME /////  */}
-
-            {/* ////// Form do PINCODE /////  */}
-            <form className="container">
-            <div className="input-label-checkpin">
-            <div className="input-group">
-                <div className="input-group-prepend">
-                    <span className="input-group-text">Digite o PinCode</span>
+                {/* ////// TITULO do TIME /////  */}
+                <div className="title_question">
+                    <div><h4>Bem vindo</h4></div>
+                    <h4>{yourTeam}</h4>
                 </div>
-                <input type="number"   className="form-control" name="pinCode" id="pinCode"></input>
-                <button type="submit"  className="btn btn-success" id='verificarPin' className="btn btn-success" onClick={pinCode === pinCode}> Verificar </button>
-            </div>
-            </div>
-            </form>
-            {/* ////// FINAL DO Form do PINCODE /////  */}
-            
-            {/* {showDivQuestion &&<div id="question"></div>}
-             */}
+                {/* ////// FINAL DO TITULO do TIME /////  */}
 
-            <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton}> Iniciar jogo </button>
-
-            <div><h1>{question.data.question}</h1> 
-                <ul>
-                    {question.data.answers.map(answer => 
-                    <li><input type="radio" name="el" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li> )}
-                </ul>
+                {/* ////// Form do PINCODE /////  */}
+                {showPinForm &&
+                <div className="container">
+                    <div className="input-label-checkpin">
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Digite o PinCode</span>
+                            </div>
+                                <input type="number" className="form-control" name="pinCode" id="pinCode" value={pinCode} onChange={this.onChangePinCode}></input>
+                                <button type="button" className="btn btn-success" id='verificarPin' onClick={this.checkPinCode}> Verificar </button>
+                        </div>
+                    </div>
+                </div>}
+                {/* ////// FINAL DO Form do PINCODE /////  */}
+                 {showButtonStart &&
+                     <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton} onClick={this.startGame}> Iniciar jogo </button>
+                 }
+                {showDivQuestion && <div>
+                    <h1>{question.data.question}</h1>
+                    <ul>
+                        {question.data.answers.map(answer =>
+                            <li><input type="radio" name="el" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li>)}
+                    </ul>
+                    <button id='verifyQuestion' onClick={this.sendAnswer}>Enviar Reposta</button>
+                </div>}
             </div>
-
-            <button id='verifyQuestion' onClick={this.sendAnswer}></button>
-        </div>
         );
     }
 }
