@@ -20,6 +20,7 @@ export default () => (
         <Route path='/viewcreateroom' component={ViewCreateRoom} />
         <Route path='/viewlogin' component={ViewLogin} />
         <Route path='/viewquestion' component={ViewQuestion}/>
+        <Route path='/ViewcreateGame' component={ViewCreateGame} />
         <Route path='/Viewconfirmgame' component={ViewConfirmGame} />
         <Route path='/viewGame' component={ViewGame} />
     </Switch>

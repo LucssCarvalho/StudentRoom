@@ -8,6 +8,7 @@ class ViewGame extends Component {
         super(props)
 
         this.state = {
+            socketURL:'http://localhost:3000/',
             yourTeam: '',
             currTeam: '',
             showDivQuestion: false,
@@ -16,12 +17,11 @@ class ViewGame extends Component {
             disableStartGameButton: false,
             pinCode:''
         }
-        const socket = socketIOClient('http://localhost:3000/')
+     
     }
  
-
     componentDidMount() {
-        
+        const socket = socketIOClient(this.state.socketURL)
         var self = this;
 
         socket.on('checkPinCode', function (data) {
@@ -39,7 +39,7 @@ class ViewGame extends Component {
             self.setState({ currTeam })
             self.setState({ showDivQuestion: false })
 
-            if(currTeam == self.state.yourTeam) socket.emit('sendQuestion');
+            if(currTeam === self.state.yourTeam) socket.emit('sendQuestion');
         });
 
         socket.on('startGame', function (data) {
@@ -48,7 +48,7 @@ class ViewGame extends Component {
                 self.setState({ disableStartGameButton: true })
                 self.setState({ currTeam })
 
-                if(currTeam == self.state.yourTeam) socket.emit('sendQuestion');
+                if(currTeam === self.state.yourTeam) socket.emit('sendQuestion');
             } else {
                 alert('Aguarde o outro time logar');
             }
@@ -58,7 +58,7 @@ class ViewGame extends Component {
             var team = data.currTeam;
             var question = data.question;
       
-            if (team == self.state.yourTeam) {
+            if (team === self.state.yourTeam) {
                 if (question) {
                     self.setState({ question })
                 } else {
@@ -68,7 +68,7 @@ class ViewGame extends Component {
         });
 
         socket.on('gameOver', function (winner) {
-            if (winner.toLowerCase() == 'tie') {
+            if (winner.toLowerCase() === 'tie') {
                 alert('It\'s a tie');
             } else {
                 alert('The winner is ' + winner);
@@ -106,26 +106,48 @@ class ViewGame extends Component {
             question,
             selectedAnswer,
             disableStartGameButton,
-            showDivQuestion} = this.state
+            showDivQuestion,
+            pinCode} = this.state
 
         return (
-            <input>
-                {yourTeam}
-                <div><h1>{currTeam}</h1></div>
-                Esse é seu time: {yourTeam}
-                {showDivQuestion && <div id="question">
-                </div>}
+        <div className="container">
 
-                <button id='startGame' disabled={disableStartGameButton}> Iniciar jogo </button>
-                <div>{question.data.question} 
-                    <ul>
-                        {question.data.answers.map(answer => 
-                        <li><input type="radio" name="el" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li> )}
-                    </ul>
+              {/* ////// TITULO do TIME /////  */}
+            <div className="title_question">
+            {yourTeam}
+            <div><h4>Seu time atual: {currTeam}</h4></div>
+                <div><h4>Esse é seu time: {yourTeam}</h4></div>
+            </div>
+            {/* ////// FINAL DO TITULO do TIME /////  */}
+
+            {/* ////// Form do PINCODE /////  */}
+            <form className="container">
+            <div className="input-label-checkpin">
+            <div className="input-group">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Digite o PinCode</span>
                 </div>
+                <input type="number"   className="form-control" name="pinCode" id="pinCode"></input>
+                <button type="submit"  className="btn btn-success" id='verificarPin' className="btn btn-success" onClick={pinCode === pinCode}> Verificar </button>
+            </div>
+            </div>
+            </form>
+            {/* ////// FINAL DO Form do PINCODE /////  */}
+            
+            {/* {showDivQuestion &&<div id="question"></div>}
+             */}
 
-                <button id='verifyQuestion' onClick={this.sendAnswer}></button>
-            </input>
+            <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton}> Iniciar jogo </button>
+
+            <div><h1>{question.data.question}</h1> 
+                <ul>
+                    {question.data.answers.map(answer => 
+                    <li><input type="radio" name="el" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li> )}
+                </ul>
+            </div>
+
+            <button id='verifyQuestion' onClick={this.sendAnswer}></button>
+        </div>
         );
     }
 }
