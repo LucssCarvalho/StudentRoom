@@ -1,0 +1,73 @@
+import React, { Component, useState } from 'react'
+import '../Styles/ViewCreateRoom.css'
+import axios from 'axios';
+import viewmenu from '../View/ViewMenu'
+import { object } from 'prop-types';
+
+import QuestionPreviewCheckbox from "../Components/QuestionPreview";
+
+class ViewCreateRoom extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      name: '',
+      period: '',
+      theme: '',
+    }
+  }
+
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  submitHandler = e => {
+    e.preventDefault()
+    console.log(this.state)
+    axios.post(`https://tcc-unip.herokuapp.com/classrooms`, this.state)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  render() {
+    const { name, period, theme } = this.state
+    return (
+      <form className='container' onSubmit={this.submitHandler}>
+        <div className="label_name_question">Crie seu jogo</div>
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text">Tema</span>
+          </div>
+          <input type="text" aria-label="theme" className="form-control" name="theme" value={theme} onChange={this.changeHandler} ></input>
+        </div>
+        <div className="label_name_question">Crie sua sala</div>
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text">Turma</span>
+          </div>
+          <input type="text" aria-label="name" className="form-control" name="name" value={name} onChange={this.changeHandler}></input>
+          <span className="input-group-text">Período</span>
+          <input type="text" aria-label="period" className="form-control" name="period" value={period} onChange={this.changeHandler} ></input>
+        </div>
+        <div className="label_name_question">Selecionar Perguntas</div>
+        <input className="btn btn-primary btn-lg btn-block" type="button" value="Buscar Perguntas" ></input>
+        <div className="list_questions">
+          <QuestionPreviewCheckbox/>
+        </div>
+        <div className="label_name_question">------</div>
+        <div className="label_name_question">------</div>
+        <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar" ></input>
+        <button className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath('/viewmenu')}>Voltar</button>
+      </form>
+    );
+  }
+}
+
+export default ViewCreateRoom;
