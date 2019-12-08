@@ -8,7 +8,7 @@ class ViewGame extends Component {
 
         this.state = {
             socket: '',
-            socketURL: 'https://tcc-unip.herokuapp.com/bf2699cd-5fa3-40f0-9608-22a1e092b80e',
+            socketURL: 'https://tcc-unip.herokuapp.com/862ef026-4011-4135-a750-c46b7a4e1580',
             yourTeam: '',
             currTeam: 'Team A',
             showDivQuestion: false,
@@ -17,7 +17,10 @@ class ViewGame extends Component {
             disableStartGameButton: true,
             pinCode: '',
             showPinForm: true,
-            showButtonStart:true
+            showButtonStart: true,
+            showResultado: false,
+            vencedor: '',
+            showResultadoEmpate: false
         }
         this.startGame = this.startGame.bind(this)
         this.onChangePinCode = this.onChangePinCode.bind(this)
@@ -33,7 +36,6 @@ class ViewGame extends Component {
         var self = this;
 
         socket.on('checkPinCode', function (data) {
-            console.log(data)
             if (data.isOk) {
                 self.setState({ yourTeam: data.team })
                 self.setState({ disableStartGameButton: false })
@@ -43,7 +45,6 @@ class ViewGame extends Component {
         })
 
         socket.on('setCurrentTeam', function (data) {
-            console.log(data);
             var currTeam = data.team;
 
             self.setState({ currTeam })
@@ -61,17 +62,14 @@ class ViewGame extends Component {
 
                 if (currTeam === self.state.yourTeam) {
                     socket.emit('sendQuestion')
-                    console.log("caiu no if")
                 }
-                console.log(currTeam)
-                console.log(self.state.yourTeam)
             } else {
                 alert('Aguarde o outro time logar');
             }
         });
 
         socket.on('question', function (data) {
-            self.setState({selectedAnswer:''})
+            self.setState({ selectedAnswer: '' })
             var team = data.currTeam;
             var question = data.question;
 
@@ -85,10 +83,14 @@ class ViewGame extends Component {
         });
 
         socket.on('gameOver', function (winner) {
+            self.setState({ vencedor: winner })
+            self.setState({ showDivQuestion: false })
+            self.setState({ showResultado: true })
             if (winner.toLowerCase() === 'tie') {
-                alert('It\'s a tie');
+                self.setState({ showResultadoEmpate: true })
+                // alert('Empate');
             } else {
-                alert('The winner is ' + winner);
+                // alert('Vencedor: ' + winner);
             }
         });
 
@@ -132,44 +134,57 @@ class ViewGame extends Component {
             showDivQuestion,
             pinCode,
             showPinForm,
-            showButtonStart} = this.state
+            showButtonStart,
+            showResultado,
+            showResultadoEmpate,
+            vencedor } = this.state
 
         return (
             <div className="container">
 
-                {/* ////// TITULO do TIME /////  */}
                 <div className="title_question">
                     <div><h4>Bem vindo</h4></div>
                     <h4>{yourTeam}</h4>
                 </div>
-                {/* ////// FINAL DO TITULO do TIME /////  */}
 
-                {/* ////// Form do PINCODE /////  */}
                 {showPinForm &&
-                <div className="container">
-                    <div className="input-label-checkpin">
-                        <div className="input-group">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Digite o PinCode</span>
-                            </div>
+                    <div className="container">
+                        <div className="input-label-checkpin">
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text">Digite o PinCode</span>
+                                </div>
                                 <input type="number" className="form-control" name="pinCode" id="pinCode" value={pinCode} onChange={this.onChangePinCode}></input>
                                 <button type="button" className="btn btn-success" id='verificarPin' onClick={this.checkPinCode}> Verificar </button>
+                            </div>
                         </div>
-                    </div>
-                </div>}
-                {/* ////// FINAL DO Form do PINCODE /////  */}
-                 {showButtonStart &&
-                     <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton} onClick={this.startGame}> Iniciar jogo </button>
-                 }
+                    </div>}
+
+                {showButtonStart &&
+                    <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton} onClick={this.startGame}> Iniciar jogo </button>
+                }
                 {showDivQuestion && <div className="title_question">
                     <h1>{question.data.question}</h1>
                     <ul>
                         {question.data.answers.map(answer =>
                             <li><input type="radio" name="answer" value={answer} checked={selectedAnswer == answer} onChange={this.onAnswerChange} /> {answer} </li>)}
                     </ul>
-                    <button id='verifyQuestion' onClick={this.sendAnswer}>Enviar Reposta</button>
+                    <button id='verifyQuestion' class="btn btn-success" onClick={this.sendAnswer}>Enviar Reposta</button>
                 </div>}
+
+                {showResultado &&
+                    <div className="title_question"><h4>Vencedor: {vencedor}</h4>
+                        <button class="btn btn-warning btn-lg btn-block" > Voltar </button>
+                    </div>
+                }
+
+                {showResultadoEmpate &&
+                    <div className="title_question"><h4>Empate</h4>
+                        <button class="btn btn-warning btn-lg btn-block" > Voltar </button>
+                    </div>
+                }
             </div>
+
         );
     }
 }
