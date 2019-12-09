@@ -16,7 +16,6 @@ import ViewRooms from '../View/ViewRooms'
 export default () => (
 
     <Switch>
-           <Route path='/' component={ViewTypeLogin} />
         <Route path='/viewmenu' component={ViewMenu} />
         <Route path='/getquestions' component={GetQuestions} />
         <Route path='/viewcreatequestion' component={ViewCreateQuestion} />
