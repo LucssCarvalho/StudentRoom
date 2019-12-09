@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import '../Styles/ViewLogin.css'
+import teacher from '../images/teacher.png'
 
 class ViewLogin extends Component {
+
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
   render() {
     return (
       <div className="Login">
@@ -9,20 +15,18 @@ class ViewLogin extends Component {
         </header>
         <div className="container">
           <form>
-            <div><h1 className="logo_login">LOGO</h1></div>
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
-              <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="staticEmail" placeholder="email@example.com"></input>
+            <div className="title_question">
+            <img className="img-logo_teacher" src={teacher} alt=""></img>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Login e Senha</span>
+                </div>
+                <input type="text" placeholder="professor@teste.com.br" class="form-control"></input>
+                <input type="text" placeholder="********" class="form-control"></input>
               </div>
+              <input className="btn btn-success btn-lg btn-block" type="submit" value="Enviar" />
+              <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath('/viewTypeLogin')}>Voltar</button>
             </div>
-            <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Senha:</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
-              </div>
-            </div>
-            <input className="btn btn-success" type="submit" value="Enviar" />
           </form>
         </div>
       </div>
