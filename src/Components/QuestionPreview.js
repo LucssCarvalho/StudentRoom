@@ -19,7 +19,6 @@ class QuestionPreview extends React.Component {
       console.log(res.data.data.id);
       this.setState({
         questions: res.data.data,
-        questionId : res.data.data.id
       })
     })
   }

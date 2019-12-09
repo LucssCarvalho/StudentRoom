@@ -8,7 +8,7 @@ class ViewGame extends Component {
 
         this.state = {
             socket: '',
-            socketURL: 'https://tcc-unip.herokuapp.com/862ef026-4011-4135-a750-c46b7a4e1580',
+            socketURL: 'https://tcc-unip.herokuapp.com/7722ab72-a3a3-4b78-8445-42d7d6baf868',
             yourTeam: '',
             currTeam: 'Team A',
             showDivQuestion: false,
@@ -124,6 +124,10 @@ class ViewGame extends Component {
         this.setState({ pinCode: event.target.value })
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+      }
+
     render() {
         const {
             currTeam,
@@ -161,13 +165,16 @@ class ViewGame extends Component {
                     </div>}
 
                 {showButtonStart &&
+                <div>
                     <button class="btn btn-warning btn-lg btn-block" id='startGame' disabled={disableStartGameButton} onClick={this.startGame}> Iniciar jogo </button>
+                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath ('/viewTypeLogin')}>Voltar</button>
+                </div>
                 }
                 {showDivQuestion && <div className="title_question">
                     <h1>{question.data.question}</h1>
                     <ul>
                         {question.data.answers.map(answer =>
-                            <li><input type="radio" name="answer" value={answer} checked={selectedAnswer == answer} onChange={this.onAnswerChange} /> {answer} </li>)}
+                            <li><input type="radio" name="answer" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange} /> {answer} </li>)}
                     </ul>
                     <button id='verifyQuestion' class="btn btn-success" onClick={this.sendAnswer}>Enviar Reposta</button>
                 </div>}

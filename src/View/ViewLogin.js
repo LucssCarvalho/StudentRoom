@@ -16,7 +16,7 @@ class ViewLogin extends Component {
         <div className="container">
           <form>
             <div className="title_question">
-            <img className="img-logo_teacher" src={teacher}></img>
+            <img className="img-logo_teacher" src={teacher} alt=""></img>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Login e Senha</span>
@@ -25,7 +25,7 @@ class ViewLogin extends Component {
                 <input type="text" placeholder="********" class="form-control"></input>
               </div>
               <input className="btn btn-success btn-lg btn-block" type="submit" value="Enviar" />
-              <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath('/viewTypeLogin')}>Sair</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath('/viewTypeLogin')}>Voltar</button>
             </div>
           </form>
         </div>

@@ -7,11 +7,12 @@ class ViewCreateQuestion extends Component {
     super(props)
 
     this.state = {
-      answers: [1, 2, 5, 4],
-      correct_answer: 5,
+      answers:  [],
+      correct_answer: '',
       number: '1',
       question: '',
-      theme: "Português"
+      themes: [],
+      theme:''
     }
   }
   nextPath(path) {
@@ -20,13 +21,27 @@ class ViewCreateQuestion extends Component {
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+  }
 
+  componentDidMount(){
+    axios.get(`https://tcc-unip.herokuapp.com/themes`)
+    .then((res) => {
+      this.setState({
+        themes: res.data.themes
+      })
+    })
   }
 
   submitHandler = e => {
     e.preventDefault()
-    console.log(this.state)
-    axios.post(`https://tcc-unip.herokuapp.com/questions`, this.state)
+    const bodyQuestions = {
+      "answers": this.state.answers,
+      "correct_answer": this.state.correct_answer,
+      "number": this.state.number,
+      "question": this.state.question,
+      "theme": this.state.theme
+      }
+    axios.post(`https://tcc-unip.herokuapp.com/questions`,JSON.stringify(bodyQuestions))
       .then(response => {
         alert("Pergunta Salva com sucesso")
         console.log(response)
@@ -35,18 +50,19 @@ class ViewCreateQuestion extends Component {
         console.log(error)
       })
   }
-
+  
+  
   // const submitForm = () => {
   //   const { answersTwo } = state
 
-
-  //   var body = {
-  //     options :myOptions,
-  //     question: 'asdasdasd'
-  //   }
-  // }
   render() {
-    const { question, answersOne, answersTwo, answersThree, answersFour } = this.state
+    const { 
+      question, 
+      answersOne, 
+      answersTwo, 
+      answersThree, 
+      answersFour,
+      themes } = this.state
 
     return (
       <form className='container' onSubmit={this.submitHandler}>
@@ -54,16 +70,12 @@ class ViewCreateQuestion extends Component {
 
         <textarea className="input_question" name="question" value={question} onChange={this.changeHandler}></textarea>
 
-        <select class="btn btn-primary dropdown-toggle" name="cars">
-          <option value="">Escolha um matéria</option>
-          <option value="Língua Portuguesa">Língua Portuguesa</option>
-          <option value="Matemática">Matemática</option>
-          <option value="História">História</option>
-          <option value="Geografia">Geografia</option>
-          <option value="Ciências">Ciências</option>
-          <option value="Artes">Artes</option>
-          <option value="Inglês">Inglês</option>
-        </select> 
+       <select className="btn btn-primary dropdown-toggle dropdown-toggle-split"  name="theme" value="theme">
+     
+        {this.state.themes.map(data =>
+        <option type="text"  className="form-control" name="theme" value="theme" >{data.data.Theme} </option>
+        )}
+       </select>
 
         <div className="input-group">
           <div className="input-group-prepend">
