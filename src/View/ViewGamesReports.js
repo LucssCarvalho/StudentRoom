@@ -37,6 +37,11 @@ class ViewGamesReports extends Component {
         this.setState({ classrooms: classrooms.data.data });
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+      }
+    
+
     async searchGames() {
         const { selectedClassroom, selectedTheme } = this.state;
         
@@ -131,7 +136,8 @@ class ViewGamesReports extends Component {
                         </select>
                     </div>
 
-                    <input className='search' type='submit' value='Pesquisar' onClick={this.searchGames} />
+                    <input className='search' className="btn btn-warning btn-lg btn-block" type='submit' value='Pesquisar' onClick={this.searchGames} />
+                    <input type='button' className="btn btn-primary btn-lg btn-block" value='Voltar' onClick={() => this.nextPath('/viewmenu')}/>
                 </form>
                 <div className='games'>
                     {this.state.games.map(game => this.renderGameCard(game))}

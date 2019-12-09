@@ -12,10 +12,10 @@ class ViewGameDetail extends Component {
 
     render() {
         const { data } = this.props.location;
-        
+
         return (
             <>
-                <h1 className='title'> { data.theme } </h1>
+                <h5 className='title'> {data.theme} </h5>
 
                 <div className='scores'>
                     {
@@ -23,18 +23,18 @@ class ViewGameDetail extends Component {
                             const isWinner = team.teamName === data.winner;
                             let classes = 'teamCard';
 
-                            if(isWinner) classes += ' winner';
+                            if (isWinner) classes += ' winner';
                             else classes += ' loser';
 
-                            return(
+                            return (
                                 <>
                                     <div key={team.teamName} className={classes}>
-                                        <span> { team.teamName } </span>
-                                        <span> { team.answeredQuestions.filter(question => question.isCorrect).length * 10 } pontos </span>
+                                        <span> {team.teamName} </span>
+                                        <span> {team.answeredQuestions.filter(question => question.isCorrect).length * 10} pontos </span>
                                     </div>
 
                                     {
-                                        (index !== data.teams.length - 1)? <span className='X'> X </span>: ''
+                                        (index !== data.teams.length - 1) ? <span className='X'> X </span> : ''
                                     }
                                 </>
                             );
@@ -51,15 +51,15 @@ class ViewGameDetail extends Component {
                                 data.questions.map(question => {
                                     return (
                                         <details key={question.id} onClick={() => { this.setState({ currentQuestion: question.id }) }}>
-                                            <summary className='question'> { question.data.question } </summary>
+                                            <summary className='question'> {question.data.question} </summary>
                                             {
                                                 question.data.answers.map(answer => {
                                                     const isCorrect = answer === question.data.correct_answer;
                                                     let className = 'answer';
-                                                    
-                                                    if(isCorrect) className = 'answer winner';
 
-                                                    return (<span key={answer} className={className}> { answer } </span>)
+                                                    if (isCorrect) className = 'answer winner';
+
+                                                    return (<span key={answer} className={className}> {answer} </span>)
                                                 })
                                             }
                                         </details>
@@ -69,37 +69,37 @@ class ViewGameDetail extends Component {
                         </div>
 
                         {
-                            (this.state.currentQuestion === '')?
-                            ''
-                            :
-                            data.teams.map(team => {
-                                const isCorrect = team.answeredQuestions.find(question => {
-                                    if(question.questionId === this.state.currentQuestion && question.isCorrect){
-                                        return question;
+                            (this.state.currentQuestion === '') ?
+                                ''
+                                :
+                                data.teams.map(team => {
+                                    const isCorrect = team.answeredQuestions.find(question => {
+                                        if (question.questionId === this.state.currentQuestion && question.isCorrect) {
+                                            return question;
+                                        }
+                                    });
+
+                                    let classes = 'teamCard';
+                                    let response = '';
+
+                                    if (isCorrect) {
+                                        classes += ' winner';
+                                        response = 'Acertou!'
                                     }
-                                });
-                                
-                                let classes = 'teamCard';
-                                let response = '';
+                                    else {
+                                        classes += ' loser';
+                                        response = 'Errou';
+                                    }
 
-                                if(isCorrect) {
-                                    classes += ' winner';
-                                    response = 'Acertou!'
-                                }
-                                else {
-                                    classes += ' loser';
-                                    response = 'Errou';
-                                }
-
-                                return(
-                                    <>
-                                        <div key={team.teamName} className={classes}>
-                                            <span> { team.teamName } </span>
-                                            <span> { response } </span>
-                                        </div>
-                                    </>
-                                );
-                            })
+                                    return (
+                                        <>
+                                            <div key={team.teamName} className={classes}>
+                                                <span> {team.teamName} </span>
+                                                <span> {response} </span>
+                                            </div>
+                                        </>
+                                    );
+                                })
                         }
                     </div>
                 </div>

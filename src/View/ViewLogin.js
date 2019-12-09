@@ -15,14 +15,14 @@ class ViewLogin extends Component {
         </header>
         <div className="container">
           <form>
-            <div className="title_question">
+            <div className="label_login" >
             <img className="img-logo_teacher" src={teacher} alt=""></img>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Login e Senha</span>
                 </div>
                 <input type="text" placeholder="professor@teste.com.br" class="form-control"></input>
-                <input type="text" placeholder="********" class="form-control"></input>
+                <input type="password" placeholder="********" class="form-control"></input>
               </div>
               <input className="btn btn-success btn-lg btn-block" type="submit" value="Enviar" />
               <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.nextPath('/viewTypeLogin')}>Voltar</button>

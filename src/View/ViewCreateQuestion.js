@@ -35,11 +35,11 @@ class ViewCreateQuestion extends Component {
   submitHandler = e => {
     e.preventDefault()
     const bodyQuestions = {
-      "answers": this.state.answers,
-      "correct_answer": this.state.correct_answer,
-      "number": this.state.number,
-      "question": this.state.question,
-      "theme": this.state.theme
+      answers: this.state.answers,
+      correct_answer: this.state.correct_answer,
+      number: this.state.number,
+      question: this.state.question,
+      theme: this.state.theme
       }
     axios.post(`https://tcc-unip.herokuapp.com/questions`,JSON.stringify(bodyQuestions))
       .then(response => {

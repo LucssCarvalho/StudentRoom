@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class QuestionPreview extends React.Component {
   state={
-    questions:[]
+    classroom:[]
   };
 
 
@@ -18,7 +18,7 @@ class QuestionPreview extends React.Component {
     .then((res) => {
       console.log(res.data.data.id);
       this.setState({
-        questions: res.data.data,
+        questions: res.data.data
       })
     })
   }
@@ -27,10 +27,10 @@ render(){
     return(
     <div className="container">
       <ul>
-        {this.state.questions.map(data =>
+        {this.state.classroom.map(data =>
         <li>
         <div className="input-group">
-          <div type="text"  className="form-control"  aria-label="Recipient's username"  aria-describedby="basic-addon2"> {data.data.question}</div>
+          <div type="text"  className="form-control"  aria-label="Recipient's username"  aria-describedby="basic-addon2"> {data.data.data.id}</div>
           <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="button">Excluir</button>
        </div>

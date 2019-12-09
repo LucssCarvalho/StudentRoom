@@ -1,0 +1,18 @@
+.input-room{
+    background-color: white;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.style-list{
+    list-style-type: none;
+}
+
+.Id-room{
+    font-style: italic;
+    font-weight: bold;
+    color: grey;
+}

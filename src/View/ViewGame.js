@@ -40,7 +40,7 @@ class ViewGame extends Component {
                 self.setState({ yourTeam: data.team })
                 self.setState({ disableStartGameButton: false })
             } else {
-                alert('Team already logged');
+                alert('Pin inválido');
             }
         })
 
