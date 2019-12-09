@@ -1,0 +1,92 @@
+html, body, #root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+h1 { color: #fff; margin-top: 15px;}
+
+.scores {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+}
+
+.X {
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: 10px;
+    color: #fff;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.winner {
+    color: #3E9441;
+}
+
+.loser {
+    color: #C03C3C;
+}
+
+.questionsHolder {
+    min-width: 500px;
+    margin-top: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.questionsTitle {
+    display: block;
+    color: #000;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.questionDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question {
+    background-color: #15132E;
+    min-width: 150px;
+    color: #fff;
+    padding: 5px;
+    outline: none;
+}
+
+details {
+    box-shadow: 0 2px 5px #0002;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.teams {
+    display: flex;
+}

@@ -7,6 +7,8 @@ import ViewLogin from '../View/ViewLogin'
 import ViewQuestion from '../View/ViewQuestion'
 import ViewCreateRoom from '../View/ViewCreateRoom'
 import ViewGame from '../View/ViewGame'
+import ViewGamesReports from '../View/ViewGamesReports';
+import ViewGamesDetail from '../View/ViewGameDetail';
 import ViewTypeLogin from '../View/ViewTypeLogin'
 
 
@@ -20,6 +22,8 @@ export default () => (
         <Route path='/viewlogin' component={ViewLogin} />
         <Route path='/viewquestion' component={ViewQuestion}/>
         <Route path='/viewGame' component={ViewGame} />
+        <Route path='/viewGamesReports' component={ViewGamesReports} />
+        <Route path='/viewGamesDetail' component={ViewGamesDetail} />
         <Route path='/viewtypelogin' component={ViewTypeLogin}/>
     </Switch>
 )
