@@ -10,7 +10,7 @@ class ViewGamesReports extends Component {
 
         this.state = {
             classrooms: [],
-            themes: [ 'Matematica', 'Português', 'Geografia' ],
+            themes: [],
             selectedTheme: '',
             selectedClassroom: '',
             games: []
@@ -21,6 +21,13 @@ class ViewGamesReports extends Component {
         this.searchGames = this.searchGames.bind(this);
 
         this.getClassrooms();
+        this.getThemes();
+    }
+
+    async getThemes() {
+        const themes = await axios.get('https://tcc-unip.herokuapp.com/themes');
+        
+        this.setState({ themes: themes.data.data });
     }
 
     selectTheme(event) {
