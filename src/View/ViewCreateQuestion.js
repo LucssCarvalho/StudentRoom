@@ -12,8 +12,14 @@ class ViewCreateQuestion extends Component {
       number: '1',
       question: '',
       themes: [],
-      theme:''
+      theme:'',
+      selectedTheme:'',
+      answersOne:'', 
+      answersTwo:'', 
+      answersThree:'', 
+      answersFour:'',
     }
+    this.onThemeChange = this.onThemeChange.bind(this)
   }
   nextPath(path) {
     this.props.history.push(path);
@@ -23,19 +29,32 @@ class ViewCreateQuestion extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  onThemeChange(event) {
+    this.setState({ theme: event.currentTarget.value })
+    console.log(event.currentTarget.value);
+}
+
   componentDidMount(){
     axios.get(`https://tcc-unip.herokuapp.com/themes`)
     .then((res) => {
       this.setState({
         themes: res.data.themes
       })
+      console.log(this.state.themes)
     })
   }
 
   submitHandler = e => {
+    const answers = [
+      this.state.answersOne, 
+      this.state.answersTwo,
+      this.state.answersThree,
+      this.state.answersFour
+    ]
+
     e.preventDefault()
     const bodyQuestions = {
-      answers: this.state.answers,
+      answers: answers,
       correct_answer: this.state.correct_answer,
       number: this.state.number,
       question: this.state.question,
@@ -62,6 +81,7 @@ class ViewCreateQuestion extends Component {
       answersTwo, 
       answersThree, 
       answersFour,
+      selectedTheme,
       themes } = this.state
 
     return (
@@ -70,12 +90,10 @@ class ViewCreateQuestion extends Component {
 
         <textarea className="input_question" name="question" value={question} onChange={this.changeHandler}></textarea>
 
-       <select className="btn btn-primary dropdown-toggle dropdown-toggle-split"  name="theme" value="theme">
-     
-        {this.state.themes.map(data =>
-        <option type="text"  className="form-control" name="theme" value="theme" >{data.data.Theme} </option>
-        )}
-       </select>
+        <select onChange={this.onThemeChange} className="btn btn-primary dropdown-toggle dropdown-toggle-split" name="theme">
+          {this.state.themes.map(data =>
+          <option type="text"  className="form-control" name="themeOption" value={data.data.Theme} >{data.data.Theme} </option>)}
+        </select>
 
         <div className="input-group">
           <div className="input-group-prepend">

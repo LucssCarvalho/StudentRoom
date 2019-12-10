@@ -22,6 +22,11 @@ import { object } from 'prop-types';
       this.setState({[e.target.name]: e.target.value})
     }
 
+    onAnswerChange(event) {
+      this.setState({ selectedAnswer: event.currentTarget.value })
+      console.log(event.currentTarget.value);
+  }
+
     submitHandler = e => {
       e.preventDefault()
       console.log(this.state)
