@@ -12,8 +12,7 @@ class ViewRooms extends Component {
 
   return (
     <div className="container">
-      <header className="Login-header">
-      </header>
+      <header className="Login-header"> </header>
       <div className="title_question">
         <h4>Lista de salas</h4>
         </div>

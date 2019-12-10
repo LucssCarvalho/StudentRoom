@@ -2,44 +2,47 @@ import React from 'react';
 import axios from 'axios';
 
 class QuestionPreview extends React.Component {
-  state={
-    questions:[]
+  state = {
+    questions: [],
+    theme: '',
+    themes:[]
   };
 
+  onThemeChange(event) {
+    this.setState({ theme: event.currentTarget.value })
+    console.log(event.currentTarget.value);
+}
 
-  // deleteQuestion = (questions) =>{
-  // axios.delete(`https://tcc-unip.herokuapp.com/questions/${questionId}`)
-  // }
-  // axios.delete(`https://tcc-unip.herokuapp.com/questions/${questionId}`)
-
-
-  componentDidMount(){
-    axios.get(`https://tcc-unip.herokuapp.com/questions`)
-    .then((res) => {
-      console.log(res.data.data.id);
-      this.setState({
-        questions: res.data.data
+  getQuestion() {
+    axios.get(`https://tcc-unip.herokuapp.com/questions`,this.state)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          questions: res
+        })
       })
-    })
   }
 
-render(){
-    return(
-    <div className="container">
-      <ul>
-        {this.state.questions.map(data =>
-        <li>
-        <div className="input-group">
-          <div type="text"  className="form-control"  aria-label="Recipient's username"  aria-describedby="basic-addon2"> {data}</div>
-          <div className="input-group-append">
-          <button className="btn btn-outline-secondary" type="button">Excluir</button>
-       </div>
+  render() {
+    const {
+      themes } = this.state
+    
+    return (
+      <div className='step'>
+        <ul>
+          {this.state.questions.map(data =>
+            <li>
+              <div className="input-group">
+                <div type="text" className="form-control"> {data}</div>
+                <div className="input-group-append">
+                  <button className="btn btn-outline-secondary" type="button">Excluir</button>
+                </div>
+              </div>
+            </li>
+          )}
+        </ul>
       </div>
-         </li>
-        )}
-      </ul>
-    </div>
-         );
-     }
+    );
+  }
 }
 export default QuestionPreview;
