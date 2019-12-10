@@ -49,7 +49,7 @@ class ViewCreateGame extends Component {
     async getQuestions() {
         const questions = await axios.get('https://tcc-unip.herokuapp.com/questions',
         {
-            params: { 'theme': 'Matematica' }
+            params: { 'theme': this.state.payload.selectedTheme }
         });
         
         this.setState({ questions: questions.data.data });
