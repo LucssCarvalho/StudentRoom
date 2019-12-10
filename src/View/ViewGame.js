@@ -21,7 +21,7 @@ class ViewGame extends Component {
             showResultado: false,
             vencedor: '',
             showResultadoEmpate: false,
-            showUrlForm:true,
+            showUrlForm: true,
             urlCode:''
         }
         this.startGame = this.startGame.bind(this)
@@ -37,17 +37,17 @@ class ViewGame extends Component {
      
     // }
     checkUrl(event) {
-
         this.setState({socketURL : event.target.value})
-        console.log(this.state.socketURL)
         
-        const socket = socketIOClient(this.state.socketURL)
+        const socket = socketIOClient("https://tcc-unip.herokuapp.com/" + this.state.socketURL)
         this.setState({ socket })
         var self = this;
 
         socket.on('checkPinCode', function (data) {
             if (data.isOk) {
                 self.setState({ yourTeam: data.team })
+                self.setState({ showPinForm: false})
+                self.setState({showUrlForm: false})
                 self.setState({ disableStartGameButton: false })
             } else {
                 alert('Pin inválido');
@@ -69,7 +69,6 @@ class ViewGame extends Component {
                 self.setState({ showButtonStart: false })
                 self.setState({ showPinForm: false })
                 self.setState({ currTeam })
-
                 if (currTeam === self.state.yourTeam) {
                     socket.emit('sendQuestion')
                 }
@@ -136,8 +135,7 @@ class ViewGame extends Component {
     }
 
     onChangeUrlCode(event) {
-        this.setState({ urlCode: event.currentTarget.value })
-        console.log(this.state.urlCode)
+        this.setState({ urlCode: event.target.value })
     }
 
     nextPath(path) {
@@ -177,7 +175,7 @@ class ViewGame extends Component {
                                     <span className="input-group-text">Digite o ID Game</span>
                                 </div>
                                 <input type="text" className="form-control" name="urlCode" id="urlCode" value={urlCode} onChange={this.onChangeUrlCode}></input>
-                                <button type="button" className="btn btn-success" id='verificarRel' onClick={this.checkUrl}> Verificar </button>
+                                <button type="button" className="btn btn-success" id='verificarRel'  value={urlCode} onClick={this.checkUrl}> Verificar </button>
                             </div>
                         </div>
                     </div>}
@@ -205,7 +203,7 @@ class ViewGame extends Component {
                     <h1>{question.data.question}</h1>
                     <ul>
                         {question.data.answers.map(answer =>
-                            <li><input type="radio" name="answer" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange}/> {answer} </li>)}
+                            <li className="style-answers-list"><input type="radio" name="answer" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange}/> {answer} </li>)}
                     </ul>
                     <button id='verifyQuestion' class="btn btn-success" onClick={this.sendAnswer}>Enviar Reposta</button>
                 </div>}

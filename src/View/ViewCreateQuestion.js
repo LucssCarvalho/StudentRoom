@@ -116,7 +116,7 @@ class ViewCreateQuestion extends Component {
         <div className="input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">
-              <input type="radio"></input>
+              <input type="radio" name="" value="" onChange={this.changeHandler}></input>
             </div>
           </div>
           <input type="text" className="form-control" name="answersThree" value={answersThree} onChange={this.changeHandler}></input>

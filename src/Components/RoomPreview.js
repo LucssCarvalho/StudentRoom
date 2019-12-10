@@ -8,14 +8,14 @@ class RoomPreview extends React.Component {
   };
 
   componentDidMount(){
-    axios.get(`https://tcc-unip.herokuapp.com/classrooms`)
+    axios.get(axios.get(`https://tcc-unip.herokuapp.com/classrooms`)
     .then((res) => {
       console.log(res.data.data.name);
       this.setState({
         questions: res.data.data,
       })
     })
-  }
+    )}
 
 render(){
     return(

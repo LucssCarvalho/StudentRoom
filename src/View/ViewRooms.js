@@ -15,7 +15,7 @@ class ViewRooms extends Component {
       <header className="Login-header">
       </header>
       <div className="title_question">
-        <h2>Lista de salas</h2>
+        <h4>Lista de salas</h4>
         </div>
         <div className="list_questions">
         <RoomPreview/>

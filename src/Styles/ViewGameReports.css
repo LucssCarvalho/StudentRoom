@@ -21,8 +21,8 @@ html, body, #root {
     width: 200px;
     border-radius: 10px;
     outline: none;
-    padding: 10px;
     margin-right: 15px;
+    font-size: 15px;
 }
 
 .search {

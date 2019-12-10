@@ -15,7 +15,7 @@ class GetQuestions extends Component {
       <header className="Login-header">
       </header>
       <div className="title_question">
-        <h5>Lista de perguntas</h5>
+        <h4>Lista de perguntas</h4>
         </div>
         <div className="list_questions">
         <QuestionPreview/>

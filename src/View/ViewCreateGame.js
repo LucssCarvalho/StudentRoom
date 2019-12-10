@@ -30,6 +30,10 @@ class ViewCreateGame extends Component {
         this.createGame = this.createGame.bind(this);
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+      }    
+
     componentDidMount() {
         this.goToStep(this.state.currentStep);
     }
@@ -155,6 +159,7 @@ class ViewCreateGame extends Component {
                         </select>
 
                         <button className='nextStep' onClick={this.nextStep}> Próximo </button>
+                        <button className='nextStep' onClick={() => this.nextPath('/viewmenu')}>Voltar</button>
                     </div>
                 );
             case 2:

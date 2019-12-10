@@ -13,13 +13,13 @@ class ViewGamesReports extends Component {
             themes: [],
             selectedTheme: '',
             selectedClassroom: '',
-            games: []
+            games: [],
+            Theme:''
         };
 
         this.selectClassroom = this.selectClassroom.bind(this);
         this.selectTheme = this.selectTheme.bind(this);
         this.searchGames = this.searchGames.bind(this);
-
         this.getClassrooms();
         this.getThemes();
     }
@@ -27,7 +27,8 @@ class ViewGamesReports extends Component {
     async getThemes() {
         const themes = await axios.get('https://tcc-unip.herokuapp.com/themes');
         
-        this.setState({ themes: themes.data.data });
+        this.setState({ Theme: themes.data});
+        console.log(this.state.Theme)
     }
 
     selectTheme(event) {
@@ -138,7 +139,7 @@ class ViewGamesReports extends Component {
                         <select className='select' value={this.state.selectedTheme} onChange={this.selectTheme}>
                             <option> Selecione o tema </option>
                             { 
-                                this.state.themes.map(theme => <option key={theme} value={theme}> { theme } </option>)
+                               this.state.Theme && this.state.Theme.themes.map(theme => <option key={theme.data.Theme} value={theme.data.Theme}> {theme.data.Theme} </option>)
                             }
                         </select>
                     </div>

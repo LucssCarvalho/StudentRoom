@@ -29,10 +29,10 @@ import { object } from 'prop-types';
 
     submitHandler = e => {
       e.preventDefault()
-      console.log(this.state)
       axios.post(`https://tcc-unip.herokuapp.com/classrooms`, this.state)
       .then (response => {
         console.log(response)
+        alert('Sala criada com sucesso')
       })
       .catch(error => {
         console.log(error)
@@ -47,8 +47,8 @@ import { object } from 'prop-types';
             <div className="input-group-prepend">
               <span className="input-group-text">Nome e Período</span>
             </div>
-            <input type="text" aria-label="name" className="form-control" name="name" value={name} onChange = {this.changeHandler}></input>
-            <input type="text" aria-label="period" className="form-control" name="period" value={period} onChange = {this.changeHandler} ></input>
+            <input type="text" aria-label="name" id="name" className="form-control" name="name" value={name} onChange = {this.changeHandler}></input>
+            <input type="text" aria-label="period" id="period" className="form-control" name="period" value={period} onChange = {this.changeHandler} ></input>
           </div>
           <input className="btn btn-primary btn-lg btn-block" type="submit" value="Enviar" ></input>
            <button className="btn btn-primary btn-lg btn-block"  onClick={() => this.nextPath ('/viewmenu')}>Voltar</button>
