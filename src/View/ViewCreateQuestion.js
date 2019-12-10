@@ -60,7 +60,9 @@ class ViewCreateQuestion extends Component {
       question: this.state.question,
       theme: this.state.theme
       }
-    axios.post(`https://tcc-unip.herokuapp.com/questions`,JSON.stringify(bodyQuestions))
+      var asd = JSON.stringify(bodyQuestions)
+      debugger
+    axios.post(`https://tcc-unip.herokuapp.com/questions`,bodyQuestions)
       .then(response => {
         alert("Pergunta Salva com sucesso")
         console.log(response)
@@ -70,10 +72,6 @@ class ViewCreateQuestion extends Component {
       })
   }
   
-  
-  // const submitForm = () => {
-  //   const { answersTwo } = state
-
   render() {
     const { 
       question, 
@@ -98,7 +96,7 @@ class ViewCreateQuestion extends Component {
         <div className="input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">
-              <input type="radio"></input>
+            <input type="radio" name="correct_answer" value={answersOne}  onChange={this.changeHandler}></input>
             </div>
           </div>
           <input type="text" className="form-control" name="answersOne" value={answersOne} onChange={this.changeHandler}></input>
@@ -107,7 +105,7 @@ class ViewCreateQuestion extends Component {
         <div className="input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">
-              <input type="radio" ></input>
+            <input type="radio" name="correct_answer" value={answersTwo} onChange={this.changeHandler}></input>
             </div>
           </div>
           <input type="text" className="form-control" name="answersTwo" value={answersTwo} onChange={this.changeHandler}></input>
@@ -116,7 +114,7 @@ class ViewCreateQuestion extends Component {
         <div className="input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">
-              <input type="radio" name="" value="" onChange={this.changeHandler}></input>
+              <input type="radio" name="correct_answer" value={answersThree} onChange={this.changeHandler}></input>
             </div>
           </div>
           <input type="text" className="form-control" name="answersThree" value={answersThree} onChange={this.changeHandler}></input>
@@ -125,7 +123,7 @@ class ViewCreateQuestion extends Component {
         <div className="input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">
-              <input type="radio" aria-label="Radio button for following text input"></input>
+            <input type="radio" name="correct_answer" value={answersFour} onChange={this.changeHandler}></input>
             </div>
           </div>
           <input type="text" className="form-control" name="answersFour" value={answersFour} onChange={this.changeHandler} ></input>
