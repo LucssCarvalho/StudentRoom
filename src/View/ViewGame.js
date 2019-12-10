@@ -95,7 +95,7 @@ class ViewGame extends Component {
             self.setState({ vencedor: winner })
             self.setState({ showDivQuestion: false })
             self.setState({ showResultado: true })
-            if (winner.toLowerCase() === 'tie') {
+            if (winner.toLowerCase() === 'Empate') {
                 self.setState({ showResultadoEmpate: true })
                 // alert('Empate');
             } else {
@@ -203,7 +203,8 @@ class ViewGame extends Component {
                     <h1>{question.data.question}</h1>
                     <ul>
                         {question.data.answers.map(answer =>
-                            <li className="style-answers-list"><input type="radio" name="answer" value={answer} checked={selectedAnswer === answer} onChange={this.onAnswerChange}/> {answer} </li>)}
+                            <li className="style-answers-list"><input type="radio" name="answer" value={answer}
+                             checked={selectedAnswer === answer} onChange={this.onAnswerChange}/> {answer} </li>)}
                     </ul>
                     <button id='verifyQuestion' class="btn btn-success" onClick={this.sendAnswer}>Enviar Reposta</button>
                 </div>}
